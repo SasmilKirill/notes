@@ -12,3 +12,5 @@ class AuthorModelViewSet(ModelViewSet):
 
     #def get_queryset(selfself):
      #   return Author.objects.get(id=1)
+
+    #   w
