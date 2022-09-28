@@ -1,16 +1,15 @@
-#from django.shortcuts import render
+from django.shortcuts import render
 
 
-#from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet
 
-#from .models import Author
-#from .serialiazers import AuthorModelSerializer
+from .models import Author
+from .serialiazers import AuthorModelSerializer
 
-#class AuthorModelViewSet(ModelViewSet):
-   # queryset = Author.objects.all()
-   # serializer_class = AuthorModelSerializer
+class AuthorModelViewSet(ModelViewSet):
+    queryset = Author.objects.all()
+    serializer_class = AuthorModelSerializer
 
     #def get_queryset(selfself):
      #   return Author.objects.get(id=1)
 
-    #   wr
