@@ -15,7 +15,7 @@ class AuthorModelSerializer(ModelSerializer):
         model = Author
         fields = '__all__'
 
-class BiographiesHyperlinkedModelSerializer(HyperlinkedModelSerializer):
+class BiographiesModelSerializer(ModelSerializer):
     class Meta:
         model = Biographies
         fields = '__all__'
