@@ -6,6 +6,11 @@ from rest_framework.viewsets import ModelViewSet
 from .models import Author,Book,BiographiesHyperlinkedModeSerializer
 from .serialiazers import AuthorModelSerializer
 
+class AdminOnly(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.is_admin
+
+
 class AuthorModelViewSet(ModelViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorModelSerializer
