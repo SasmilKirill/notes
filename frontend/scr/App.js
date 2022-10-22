@@ -40,3 +40,16 @@ class App extends React.Component {
 }
 
 export default App:
+
+
+    get_token(username, password){
+        const data = {username:username, password: password}
+        axios.post( url: 'http://127.0.0.1:8099/api-token/',data).then(response => {
+            this. set_token|(response.data} "token'])
+        }).catch(error => alert('Неверный логин или пароль'))
+    }
+
+    get_headers(){
+
+
+    }
