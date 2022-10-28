@@ -4,23 +4,34 @@ from .models import Author
 
 
 class AuthorModelSerializer(ModelSerializer)
-    class Meta:
-        model = Author
-        fielsd = 'user_name, first_name, last_name, email '
-        # fields = ('first_name',last_name')
-        # excluse = ('last_name',)
+    from rest_framework import serializers
+    from .models import Author, Book
+    class AuthorSerializer(serializers.ModelSerializer):
+        class Meta:
 
-class AuthorModelSerializer(ModelSerializer):
-    class Meta:
-        model = Author
-        fields = '__all__'
+            model = Author
 
-class BiographiesModelSerializer(ModelSerializer):
-    class Meta:
-        model = Biographies
-        fields = '__all__'
+    fields = '__all__'
 
-class BookModelSerializer(ModelSerializer):
+    class AuthorSerializerBase(serializers.ModelSerializer):
+        class Meta:
+
+            model = Author
+
+    fields = ('name',)
+
+    class BookSerializerBase(serializers.ModelSerializer):
+
+    #
     class Meta:
         model = Book
-        fields = '__all__'
+
+    fields = '__all__'
+
+    class BookSerializer(serializers.ModelSerializer):
+        author = AuthorSerializer()
+
+    class Meta:
+        model = Book
+
+    fields = '__all__'
