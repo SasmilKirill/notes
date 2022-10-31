@@ -1,16 +1,26 @@
-#from django.shortcuts import render
+from rest_framework import viewsets, permissions
+from .models import Author, Book
+from .serializers import AuthorSerializer, AuthorSerializerBase, BookSerializer,BookSerializerBase
 
 
-#from rest_framework.viewsets import ModelViewSet
+class AuthorViewSet(viewsets.ModelViewSet):
+    serializer_class = AuthorSerializer
+    queryset = Author.objects.all()
 
-#from .models import Author
-#from .serialiazers import AuthorModelSerializer
+    def get_serializer_class(self):
+        if self.request.version == '2.0':
+            return AuthorSerializerBase
 
-#class AuthorModelViewSet(ModelViewSet):
-   # queryset = Author.objects.all()
-   # serializer_class = AuthorModelSerializer
+    return AuthorSerializer
 
-    #def get_queryset(selfself):
-     #   return Author.objects.get(id=1)
+    class BookViewSet(viewsets.ModelViewSet):
+        serializer_class = BookSerializer
 
-    #   wr
+    queryset = Book.objects.all()
+
+    def get_serializer_class(self):
+        if self.request.method in ['GET']:
+            return BookSerializer
+
+    return BookSerializerBase
+
