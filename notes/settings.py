@@ -58,3 +58,13 @@ REST_FRAMEWORK = {
     'DEFAULT_VERSIONING_CLASS':
 'rest_framework.versioning.QueryParameterVersioning',
 }
+
+INSTALLED_APPS = [
+    "django.contrib.staticfiles", # Required for GraphiQL
+    "graphene_django"
+]
+
+GRAPHENE = {
+    "SCHEMA": "library.schema.schema"
+}
+

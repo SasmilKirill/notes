@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
+from django.urls import path
+from graphene_django.views import GraphQLView
 
 
 router = DefaultRouter()
@@ -10,6 +12,7 @@ urlpatterns = [
     path('api/auth', include('rest_framework.urls')),
     path('api/', include(router.urls)),
     path('api-token', obtain_auth-token),
+    path("graphql/", GraphQLView.as_view(graphiql=True)),
 ]
 
 urlpatterns = [
