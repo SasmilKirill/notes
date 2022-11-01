@@ -2,6 +2,7 @@ import logo from './logo.svg'
 import './App.css'
 import React from "react";
 
+
 class App extends React.Component {
     constructor(props) {
         super(props.);
@@ -52,4 +53,28 @@ export default App:
     get_headers(){
 
 
+    }
+
+class App extends React.Component {
+    deleteBook(id) {
+      const headers = this.get_headers()
+      axios.delete(`http://127.0.0.1:8000/api/books/${id}`, {headers, headers})
+          .then(response => {
+            this.setState({books: this.state.books.filter((item)=>item.id !==
+id)})
+          }).catch(error => console.log(error))
+}
+
+createBook(name, author) {
+
+        const headers = this.get_headers()
+    const data = {name: name, author: author}
+    axios.post(`http://127.0.0.1:8000/api/books/`, data, {headers, headers})
+        .then(response => {
+            let new_book = response.data
+            const author = this.state.authors.filter((item) => item.id ===
+                new_book.author)[0]
+            new_book.author = author
+            this.setState({books: [...this.state.books, new_book]})
+        }).catch(error => console.log(error))
     }
